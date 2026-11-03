@@ -10,7 +10,7 @@ Esa tarde se vio una luz extraña sobre los campos: dos aliens han aterrizado ju
 
 Tras ellos ha llegado el FBI, que también aprovecha para investigar los negocios del Padrino.
 
-Y por el camino del pueblo acaba de entrar una vaquera forastera, que busca a alguien y trae cuentas pendientes.
+Y por el camino del pueblo acaban de entrar dos vaqueras forasteras, que buscan a alguien y traen cuentas pendientes.
 
 Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 
@@ -21,9 +21,9 @@ Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 | Mario | 🎩 Padrino | Su víctima da una calada a su pipa | Brindis inicial y juez del Juicio de la Matanza |
 | Marco / Monti | 👽 Aliens | 1: le toca el dedo índice con el suyo · 2: se deja «escanear» (mano delante de la cara) | ¡INVASIÓN! (3 veces: todos al suelo, el último bebe), abducciones (prueba de humanidad) e inmunidad marciana a las normas |
 | Alba / Vero | 🕵️ FBI | 1: le dice su fecha de nacimiento · 2: le enseña la última foto de su móvil | Control de disfraces en la puerta, con cacheo |
-| Alicia | 🤠 Vaquera | Se toma un chupito con ella | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
+| Alicia / Sandra | 🤠 Vaqueras | 1: se toma un chupito con ella · 2: se deja poner su sombrero | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
 
-Pendientes de confirmar: Elena, Juanjo, Pablo Blanco, Rubén, Sandra, Carmen, Ignacio, Sabina, Manu, Ismael.
+Pendientes de confirmar: Elena, Juanjo, Pablo Blanco, Rubén, Carmen, Ignacio, Sabina, Manu, Ismael.
 
 ## Decisiones
 
