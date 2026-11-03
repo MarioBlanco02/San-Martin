@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#120608">
+<title>La Matanza de San Martín</title>
+<style>
+:root{
+  --ink:#fff; --ink2:rgba(255,255,255,.72); --ink3:rgba(255,255,255,.5);
+  --glass:rgba(255,255,255,.12); --glass2:rgba(255,255,255,.2); --line:rgba(255,255,255,.22);
+  --red:#ff453a; --a:#3a0a12; --b:#12060a; --accent:#ff453a;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--b);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+body{min-height:100dvh;overflow-x:hidden}
+button,input,select{font:inherit;color:inherit}
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;
+  background:radial-gradient(120% 80% at 20% 0%,var(--a) 0%,transparent 60%),radial-gradient(120% 90% at 100% 100%,color-mix(in srgb,var(--accent) 35%,transparent) 0%,transparent 55%),var(--b);transition:background .6s}
+.bg .pat{position:absolute;font-size:44px;opacity:.13;filter:saturate(.8);user-select:none;animation:float 14s ease-in-out infinite}
+.bg .hero{position:absolute;right:-40px;top:70px;font-size:260px;opacity:.16;transform:rotate(-12deg);filter:blur(1px)}
+@keyframes float{50%{transform:translateY(-14px) rotate(6deg)}}
+.app{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 18px) 18px calc(env(safe-area-inset-bottom) + 104px)}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:28px;
+  -webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 20px 50px rgba(0,0,0,.35)}
+.pad{padding:22px}
+h1{font-size:34px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px;font-weight:800}
+h2{font-size:22px;letter-spacing:-.01em;margin:0 0 10px;font-weight:700}
+h3{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin:0 0 8px;font-weight:600}
+p{margin:0 0 10px;line-height:1.45;color:var(--ink2);font-size:16px}
+.big{font-size:19px;color:var(--ink);line-height:1.4}
+.sp{height:14px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.names{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.chip{padding:14px 12px;border-radius:18px;background:var(--glass);border:1px solid var(--line);text-align:left;font-size:17px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.chip small{font-size:12px;color:var(--ink3);font-weight:500}
+.chip.sel{background:var(--ink);color:#111}
+.chip.sel small{color:#555}
+.field{width:100%;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(0,0,0,.25);font-size:28px;letter-spacing:.5em;text-align:center;outline:none}
+.btn{width:100%;padding:17px;border-radius:20px;border:0;background:var(--ink);color:#111;font-size:17px;font-weight:700;cursor:pointer;margin-top:12px}
+.btn.ghost{background:var(--glass2);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.45}
+.err{color:#ff8a80;font-size:15px;margin-top:10px;min-height:20px}
+.emoji{font-size:84px;line-height:1;margin:4px 0 10px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.4))}
+.tag{display:inline-flex;gap:6px;align-items:center;padding:6px 12px;border-radius:99px;background:var(--glass2);font-size:13px;font-weight:600;color:var(--ink)}
+.row{display:flex;gap:12px;align-items:flex-start}
+.row .ic{font-size:26px;width:34px;text-align:center;flex:none}
+.list{margin:0;padding:0;list-style:none}
+.list li{padding:12px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.4;color:var(--ink2)}
+.list li:first-child{border-top:0}
+.list b{color:var(--ink)}
+.stack>*+*{margin-top:14px}
+.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:5;display:flex;gap:4px;padding:6px;border-radius:30px;width:min(492px,calc(100% - 28px))}
+.tab{flex:1;border:0;background:transparent;padding:9px 4px;border-radius:24px;font-size:11px;font-weight:600;color:var(--ink2);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.tab span{font-size:21px}
+.tab.on{background:var(--glass2);color:var(--ink)}
+.reveal{position:relative;border-radius:22px;overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none}
+.reveal .inner{filter:blur(16px);transition:filter .2s}
+.reveal.open .inner{filter:none}
+.reveal .hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;background:rgba(0,0,0,.2)}
+.reveal.open .hint{display:none}
+.victim{font-size:40px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin:2px 0 4px}
+.count{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.norma{font-size:26px;font-weight:800;line-height:1.2;color:var(--ink);min-height:96px;display:flex;align-items:center}
+.timer{font-variant-numeric:tabular-nums;color:var(--ink3);font-size:14px}
+.tl{position:relative;padding-left:22px}
+.tl:before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line);border-radius:2px}
+.tl .it{position:relative;padding:4px 0 16px}
+.tl .it:before{content:"";position:absolute;left:-21px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+.small{font-size:13px;color:var(--ink3)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.link{background:none;border:0;color:var(--ink3);font-size:14px;cursor:pointer;padding:6px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<main class="app" id="app"></main>
+<nav class="tabs glass hidden" id="tabs"></nav>
+
+<script>
+const CFG = /*CONFIG*/null;
+
+/* ============ CONTENIDO DEL JUEGO ============ */
+const CHARACTERS = [
+ null,
+ {n:"El Guardia",e:"🦺",a:"#0b2a6b",acc:"#3b82ff",scene:"Control de carretera",pat:["🚨","🚓","📝","🚦"],
+  key:"Chaleco reflectante (el del coche)",extras:["Gorra oscura","Gafas de sol","Libreta para poner multas"],
+  arma:"Si tu víctima <b>firma en tu libreta de multas</b>, muere."},
+ {n:"El Médico",e:"🩺",a:"#0b4f4a",acc:"#2dd4bf",scene:"Quirófano",pat:["💉","🩹","💊","🏥"],
+  key:"Camisa blanca grande (como bata)",extras:["Auriculares de cable al cuello como fonendo","Guantes de fregar"],
+  arma:"Si tu víctima <b>se deja tomar el pulso</b>, muere."},
+ {n:"La Cotilla",e:"👓",a:"#5b2a4a",acc:"#f472b6",scene:"Balcón del pueblo",pat:["🪴","☕","👀","🗞️"],
+  key:"Bata de casa o rebeca",extras:["Gafas en la punta de la nariz","Pinzas en el pelo","Bolsa de la compra"],
+  arma:"Si tu víctima <b>te cuenta un cotilleo</b>, muere."},
+ {n:"El Runner",e:"🏃",a:"#1f4d1a",acc:"#a3e635",scene:"Línea de meta",pat:["⏱️","🏅","👟","💦"],
+  key:"Ropa de deporte",extras:["Dorsal de folio con el nº 9","Cinta en la frente","Cualquier medalla"],
+  arma:"Si tu víctima <b>te choca el puño</b>, muere."},
+ {n:"El Turista",e:"📸",a:"#0e4a6b",acc:"#38bdf8",scene:"Recuerdo de Cañaveras",pat:["🗺️","🌴","🧳","🕶️"],
+  key:"Riñonera + gafas de sol",extras:["Camisa de flores","Calcetines blancos bien subidos","Un mapa"],
+  arma:"Si tu víctima <b>se hace un selfie contigo</b>, muere."},
+ {n:"El Matarife",e:"🔪",a:"#5a0b0b",acc:"#ef4444",scene:"El matadero",pat:["🐷","🥓","🩸","🪝"],
+  key:"Delantal",extras:["Guantes de fregar","Manchas de kétchup","Cuchillo de cartón"],
+  arma:"Si tu víctima <b>prueba el embutido que le ofreces</b>, muere."},
+ {n:"El Camarero",e:"🍺",a:"#5a3a06",acc:"#f59e0b",scene:"La barra",pat:["🍻","🥃","🧊","🍸"],
+  key:"Camisa blanca + paño al hombro",extras:["Libreta y boli en la oreja","Una bandeja"],
+  arma:"Si tu víctima <b>acepta una bebida que le sirves</b>, muere."},
+ {n:"El DJ",e:"🎧",a:"#3b0b6b",acc:"#a855f7",scene:"La cabina",pat:["🎶","🪩","🔊","💿"],
+  key:"Cascos grandes",extras:["Gafas de sol","Gorra hacia atrás","Una cadena"],
+  arma:"Si tu víctima <b>baila contigo una canción</b>, muere."},
+ {n:"El Alcalde",e:"👔",a:"#3a2a0b",acc:"#eab308",scene:"Balcón del ayuntamiento",pat:["🏛️","🎖️","🇪🇸","📜"],
+  key:"Americana + corbata",extras:["Banda de papel «ALCALDE»","Bastón de mando (palo de escoba corto)"],
+  arma:"Si tu víctima <b>te da la mano</b>, muere."},
+ {n:"El Espía",e:"🕶️",a:"#111827",acc:"#9ca3af",scene:"Top secret",pat:["🗂️","🔍","🕵️","📡"],
+  key:"Abrigo largo + gafas de sol",extras:["Auricular de cable como pinganillo","Periódico con dos agujeros"],
+  arma:"Si tu víctima <b>te deja decirle algo al oído</b>, muere."},
+ {n:"El Cura",e:"✝️",a:"#2a1a3a",acc:"#c4b5fd",scene:"La iglesia",pat:["⛪","🕯️","📿","🙏"],
+  key:"Ropa negra + cuello de cartulina blanca",extras:["Collar como rosario","Un libro gordo como biblia"],
+  arma:"Si tu víctima <b>dice «amén»</b>, muere."},
+ {n:"El Pastor",e:"🐑",a:"#2f3a0b",acc:"#bef264",scene:"El campo",pat:["🐑","🌾","🐕","⛰️"],
+  key:"Boina o gorra + palo o garrota",extras:["Chaqueta de pana o forro viejo","Manta al hombro","Peluche de oveja"],
+  arma:"Si tu víctima <b>te acompaña a algún sitio</b>, muere."},
+ {n:"La Abuela",e:"👵",a:"#4a2a1a",acc:"#fb923c",scene:"La cocina del pueblo",pat:["🍲","🧶","🥘","🍞"],
+  key:"Rebeca + pañuelo en la cabeza",extras:["Bolso antiguo","Gafas","Zapatillas de casa (para la cena)"],
+  arma:"Si tu víctima <b>se come algo que le das</b> («come, que estás muy delgado»), muere."},
+ {n:"El Agricultor",e:"🚜",a:"#3a3a0b",acc:"#facc15",scene:"El campo de cereal",pat:["🌾","🚜","🥔","🐓"],
+  key:"Camisa de cuadros + gorra de propaganda",extras:["Chaleco acolchado","Botas","Una pajita en la boca"],
+  arma:"Si tu víctima <b>te ayuda a cargar algo</b>, muere."},
+ {n:"La Reina de las fiestas",e:"👑",a:"#5a0b3a",acc:"#f0abfc",scene:"El escenario de las fiestas",pat:["🎉","💐","✨","🎊"],
+  key:"Corona de cartón con papel de aluminio",extras:["Banda «Reina San Martín 2026»","Ropa elegante"],
+  arma:"Si tu víctima <b>te hace una reverencia</b>, muere."},
+ {n:"El Cazador",e:"🎯",a:"#1a3a1a",acc:"#4ade80",scene:"El monte",pat:["🐗","🌲","🦌","🍂"],
+  key:"Ropa verde o de camuflaje + gorra",extras:["Prismáticos","Un peluche como trofeo"],
+  arma:"Si tu víctima <b>mira hacia donde señalas</b> («¡mira, un jabalí!»), muere."},
+ {n:"La Novia a la fuga",e:"💍",a:"#4a3a4a",acc:"#fda4af",scene:"Recién casados",pat:["💐","💒","🚗","🥂"],
+  key:"Cortina o sábana blanca como velo",extras:["Ramo de flores","Mochila de «huida»"],
+  arma:"Si tu víctima <b>coge tu ramo</b>, muere."},
+ {n:"El Mecánico",e:"🔧",a:"#2a2a2a",acc:"#fb7185",scene:"El taller",pat:["🔩","🛠️","🚗","⛽"],
+  key:"Ropa vieja o mono + trapo en el bolsillo",extras:["Manchas de «grasa»","Llave inglesa"],
+  arma:"Si tu víctima <b>te presta algo «para arreglarlo»</b>, muere."},
+ {n:"El Leñador",e:"🪓",a:"#5a1a06",acc:"#f97316",scene:"La hoguera",pat:["🔥","🪵","🌲","✨"],
+  key:"Gorro de lana + guantes de trabajo",extras:["Forro polar","Hacha de cartón","Barba pintada"],
+  arma:"Si tu víctima <b>se calienta contigo en la hoguera</b> un minuto, muere."},
+ {n:"El Tahúr",e:"🃏",a:"#0b3a2a",acc:"#34d399",scene:"La mesa de póker",pat:["♠️","♥️","🎲","🪙"],
+  key:"Chaleco o camisa + baraja de cartas",extras:["Gafas de sol","Visera","Palillo en la boca"],
+  arma:"Si tu víctima <b>juega contigo a piedra, papel o tijera</b>, muere."},
+];
+
+const ACTIONS = [ null,
+ "Que te diga la hora",
+ "Que brinde contigo chocando los vasos",
+ "Que pruebe tu bebida",
+ "Que te preste su chaqueta o bufanda un momento",
+ "Que te diga su segundo apellido",
+ "Que te dé un abrazo",
+ "Que te choque los cinco",
+ "Que te diga su canción favorita",
+ "Que te sujete el vaso",
+ "Que te dé algo que lleve en el bolsillo",
+ "Que te diga «salud»",
+ "Que te cuente un chiste",
+ "Que te ponga la mano en el hombro",
+ "Que se ponga una pieza de tu disfraz",
+ "Que te diga algo bueno de tu disfraz",
+ "Que te pida perdón",
+ "Que te dé dos besos",
+ "Que te diga cuántos años cumple el cumpleañero",
+ "Que te frote los brazos «por el frío»",
+ "Que te diga qué ha cenado",
+ "Que te diga a qué hora se ha levantado hoy",
+ "Que te haga una foto (a ti solo)",
+ "Que te diga su comida favorita",
+ "Que te dé las gracias",
+ "Que te diga «te quiero»",
+ "Que te diga dónde ha aparcado",
+ "Que te ayude a ponerte la chaqueta",
+ "Que te diga cuál es el mejor disfraz de la noche",
+ "Que imite a alguien de la fiesta",
+ "Que te diga «voy fatal»",
+];
+
+const SONGS = [ null,
+ "Paquito el Chocolatero","Amparito Roca","La Macarena · Los del Río","Saturday Night · Whigfield",
+ "La Bomba · King África","Follow the Leader · Soca Boys","Mayonesa · Chocolate","Danza Kuduro · Don Omar",
+ "Gasolina · Daddy Yankee","Despacito · Luis Fonsi","Sarandonga · Lolita","Corazón contento · Marisol",
+ "Mi gran noche · Raphael","Chiquilla · Seguridad Social","Devuélveme a mi chica · Hombres G","La raja de tu falda · Estopa",
+ "El Chiringuito · Georgie Dann","Waka Waka · Shakira","Bailando · Enrique Iglesias","Vivir mi vida · Marc Anthony",
+ "Suavemente · Elvis Crespo","Ai se eu te pego · Michel Teló","La Gozadera · Gente de Zona","Livin' la Vida Loca · Ricky Martin",
+];
+
+const NORMAS = [
+ "Prohibido decir nombres: solo se llama a la gente por su personaje.",
+ "Se bebe con la mano izquierda.",
+ "Prohibido decir «sí» y «no».",
+ "Antes de cada trago hay que brindar: «¡Por San Martín!».",
+ "Todo el mundo habla como su personaje.",
+ "Prohibido señalar con el dedo: se señala con el codo.",
+ "Quien se toque la cara, bebe.",
+ "Prohibido decir «beber», «copa» o «cerveza».",
+ "Prohibido sacar el móvil (salvo para esta web).",
+ "Antes de hablar hay que decir «con permiso del cumpleañero».",
+ "Cada vez que alguien diga «cerdo», todos gritan «¡oink!». El último, bebe.",
+ "Todo el mundo habla de sí mismo en tercera persona.",
+ "Prohibido reírse. El que se ría, bebe.",
+ "Quien vaya al baño elige a alguien que bebe.",
+ "Todas las frases terminan con «¿eh?».",
+ "Prohibido decir palabrotas.",
+ "Cuando el cumpleañero levante la mano, todos la levantan. El último, bebe.",
+ "Las cosas se piden cantando.",
+ "Prohibido cruzar los brazos.",
+ "Todo el mundo habla con acento de otra región.",
+];
+
+const PROGRAMA = [
+ ["🚪","Llegada · Control de disfraces","Quien venga sin su pieza clave ⭐ se toma un chupito de penitencia y juega sin arma. Foto de grupo y se desbloquean las misiones."],
+ ["🍽️","Cena · Las normas del pueblo","Cada 20 minutos alguien saca una norma nueva en la pestaña Juegos. Quien la incumpla, bebe."],
+ ["⚖️","Sobremesa · El Juicio de la Matanza","En corro, por turnos, cada uno acusa a quien cree que va a por él. Si acierta, bebe el acusado. Si falla, bebe él."],
+ ["🎶","Escuelas · Canción maldita","Cada uno tiene su canción en su tarjeta. Cuando suene: o sales a bailar o bebes."],
+ ["☠️","Toda la noche · Chupito de luto","Cada vez que alguien muere, se toma un chupito con su asesino."],
+ ["🏆","4:00 · Premios","Matarife del año (más muertes) · Mejor disfraz (votación) · Muerte más absurda."],
+];
+
+/* ============ SERVIDOR (Supabase) o MODO PRUEBA ============ */
+const LS = {get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+            set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+            del(k){try{localStorage.removeItem(k)}catch(e){}}};
+
+async function rpc(fn, args){
+  if(CFG){
+    const r = await fetch(CFG.url.replace(/\/$/,"")+"/rest/v1/rpc/"+fn,{method:"POST",
+      headers:{"Content-Type":"application/json",apikey:CFG.key,Authorization:"Bearer "+CFG.key},body:JSON.stringify(args||{})});
+    const j = await r.json().catch(()=>null);
+    if(!r.ok) throw new Error((j&&(j.message||j.hint))||"Error de conexión");
+    return j;
+  }
+  return mock(fn,args||{});
+}
+
+/* Modo prueba: simula el servidor en este navegador. ?ahora en la URL desbloquea las misiones. */
+function mock(fn,a){
+  const db = LS.get("mock.db",null) || {roster:["Mario","Laura","Javi","Ana","Pablo","Lucía"],players:{},missions:null};
+  const start = new URL(location.href).searchParams.has("ahora") ? new Date(Date.now()-1000) : new Date("2026-11-07T21:30:00+01:00");
+  const save=()=>LS.set("mock.db",db), rnd=n=>1+Math.floor(Math.random()*n);
+  if(fn==="matanza_status") return {roster:db.roster,claimed:Object.keys(db.players),start_at:start.toISOString(),now:new Date().toISOString()};
+  if(!/^\d{4}$/.test(a.p_pin)) throw new Error("El PIN son 4 cifras");
+  let p=db.players[a.p_name], late=false;
+  if(!p){ const used=Object.values(db.players).map(x=>x.c); let c; do{c=rnd(20)}while(used.includes(c)&&used.length<20);
+    p=db.players[a.p_name]={pin:a.p_pin,c,s:rnd(24)}; late=!!db.missions; }
+  else if(p.pin!==a.p_pin) throw new Error("PIN incorrecto");
+  const started = Date.now()>=start;
+  if(started && !db.missions){ const ns=Object.keys(db.players).sort(()=>Math.random()-.5); db.missions={};
+    ns.forEach((n,i)=>db.missions[n]={t:ns[(i+1)%ns.length],a:rnd(30)}); }
+  save(); const m=db.missions&&db.missions[a.p_name]; if(started&&!m) late=true;
+  return {name:a.p_name,character_id:p.c,song_id:p.s,start_at:start.toISOString(),now:new Date().toISOString(),started,late,target:m?m.t:null,action_id:m?m.a:null};
+}
+
+/* ============ INTERFAZ ============ */
+const $ = s=>document.querySelector(s);
+const app=$("#app"), tabsEl=$("#tabs"), bg=$("#bg");
+let S={status:null, sel:null, me:null, tab:"tarjeta", err:"", skew:0, norma:LS.get("norma",null)};
+
+function paintBg(ch){
+  const r=document.documentElement.style;
+  if(ch){ r.setProperty("--a",ch.a); r.setProperty("--accent",ch.acc); }
+  else { r.setProperty("--a","#3a0a12"); r.setProperty("--accent","#ff453a"); }
+  const pat = ch?ch.pat:["🐷","🔪","🍷","🎂"];
+  let h = `<div class="hero">${ch?ch.e:"🐷"}</div>`;
+  for(let i=0;i<16;i++){ const x=(i*37)%100, y=(i*61)%100, d=(i%5)*1.7;
+    h+=`<div class="pat" style="left:${x}%;top:${y}%;animation-delay:-${d}s">${pat[i%pat.length]}</div>`; }
+  bg.innerHTML=h;
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtDate=iso=>new Date(iso).toLocaleString("es-ES",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit",timeZone:"Europe/Madrid"});
+
+/* ---- Entrada ---- */
+function loginView(){
+  paintBg(null); tabsEl.classList.add("hidden");
+  const st=S.status||{roster:[],claimed:[]};
+  const chips = st.roster.map(n=>{const c=st.claimed.includes(n);
+    return `<button class="chip ${S.sel===n?"sel":""}" data-n="${esc(n)}">${esc(n)}<small>${c?"🔒":"nuevo"}</small></button>`}).join("");
+  const first = S.sel && !st.claimed.includes(S.sel);
+  app.innerHTML = `
+  <div class="stack">
+    <div class="glass pad">
+      <div class="eyebrow">Cañaveras · Sábado 7 de noviembre</div>
+      <h1>La Matanza de San Martín 🐷</h1>
+      <p>A cada cerdo le llega su San Martín… Elige tu nombre para ver tu personaje.</p>
+      <div class="names">${chips||'<p class="small">Cargando invitados…</p>'}</div>
+    </div>
+    ${S.sel?`<form class="glass pad" id="pinf">
+      <h2>${first?"Crea tu PIN":"Tu PIN"}</h2>
+      <p>${first?"Es la primera vez que entras. Elige 4 cifras y no se las digas a nadie: con ellas verás tu misión el sábado.":"Mete tus 4 cifras."}</p>
+      <input class="field" id="pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" placeholder="••••" required>
+      <button class="btn" id="go">${first?"Descubrir mi personaje":"Entrar"}</button>
+      <div class="err">${esc(S.err)}</div>
+    </form>`:""}
+  </div>`;
+  app.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{S.sel=b.dataset.n;S.err="";loginView();setTimeout(()=>{const i=$("#pin");i&&i.focus()},50)});
+  const f=$("#pinf"); if(f) f.onsubmit=async e=>{e.preventDefault(); const pin=$("#pin").value; $("#go").disabled=true;
+    try{ await enter(S.sel,pin); }catch(err){ S.err=err.message; loginView(); } };
+}
+
+async function enter(name,pin){
+  const me = await rpc("matanza_enter",{p_name:name,p_pin:pin});
+  S.me=me; S.skew=new Date(me.now)-Date.now(); LS.set("sess",{name,pin}); S.err="";
+  render();
+}
+
+/* ---- Pestañas ---- */
+const TABS=[["tarjeta","🎭","Personaje"],["mision","🔪","Misión"],["juegos","🎲","Juegos"],["programa","🗓️","Programa"]];
+function nav(){
+  tabsEl.classList.remove("hidden");
+  tabsEl.innerHTML=TABS.map(([k,i,l])=>`<button class="tab ${S.tab===k?"on":""}" data-t="${k}"><span>${i}</span>${l}</button>`).join("");
+  tabsEl.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;render();scrollTo(0,0)});
+}
+
+function header(){ return `<div class="top"><span class="tag">👤 ${esc(S.me.name)}</span><button class="link" id="out">Salir</button></div>`; }
+
+function tarjetaView(ch){
+  const song=SONGS[S.me.song_id]||"";
+  return `${header()}
+  <div class="stack">
+    <div class="glass pad">
+      <div class="eyebrow">Tu personaje · ${esc(ch.scene)}</div>
+      <div class="emoji">${ch.e}</div>
+      <h1>${esc(ch.n)}</h1>
+      <p>Ven caracterizado con lo que tengas por casa.</p>
+    </div>
+    <div class="glass pad">
+      <h3>Tu disfraz</h3>
+      <div class="row"><div class="ic">⭐</div><div><p class="big"><b>${esc(ch.key)}</b></p><p class="small">Pieza clave obligatoria. Sin ella: chupito de penitencia y juegas sin arma.</p></div></div>
+      <div class="sp"></div>
+      <h3>Extras para currártelo</h3>
+      <ul class="list">${ch.extras.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    </div>
+    <div class="glass pad">
+      <h3>Tu arma · un solo uso</h3>
+      <p class="big">${ch.arma}</p>
+      <p class="small">Todo el mundo conoce las armas de los disfraces… pero nadie sabe a por quién vas.</p>
+    </div>
+    <div class="glass pad">
+      <h3>Tu canción maldita · escuelas</h3>
+      <p class="big">🎵 <b>${esc(song)}</b></p>
+      <p class="small">Cuando suene: o sales a bailar o bebes.</p>
+    </div>
+  </div>`;
+}
+
+function countdown(){
+  const ms=new Date(S.me.start_at)-(Date.now()+S.skew);
+  if(ms<=0) return "¡Ya!";
+  const d=Math.floor(ms/864e5), h=Math.floor(ms/36e5)%24, m=Math.floor(ms/6e4)%60, s=Math.floor(ms/1e3)%60;
+  return (d?d+"d ":"")+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+function misionView(ch){
+  const rules = `<div class="glass pad"><h3>Cómo se mata</h3><ul class="list">
+    <li><b>Acción secreta:</b> consigue que tu víctima la haga contigo. Puedes intentarlo las veces que quieras.</li>
+    <li><b>Tu arma:</b> la otra forma de matar, la de tu disfraz. Vale una sola vez.</li>
+    <li>En cuanto lo consigas, dile <b>«estás muerto»</b>.</li>
+    <li><b>Si te matan:</b> dile al oído a tu asesino tu víctima y tu acción secreta. Él sigue con ellas. Tu arma no se hereda. Y chupito de luto juntos ☠️</li>
+    <li>Si te toca de víctima tú mismo, eres el último vivo: <b>¡has ganado!</b></li>
+    <li><b>A las 4:00 se acaba.</b> Gana quien más muertes lleve.</li></ul></div>`;
+  if(!S.me.started) return `${header()}<div class="stack">
+    <div class="glass pad"><div class="eyebrow">Misión bloqueada</div><h2>Tu víctima se revela en la cena</h2>
+    <div class="count" id="cd">${countdown()}</div><p class="small">${esc(fmtDate(S.me.start_at))}</p></div>${rules}</div>`;
+  if(S.me.late||!S.me.target) return `${header()}<div class="stack">
+    <div class="glass pad"><div class="eyebrow">Llegas tarde</div><h2>El sorteo ya está hecho</h2>
+    <p>Díselo al cumpleañero: puede repetir el sorteo para meterte.</p></div>${rules}</div>`;
+  return `${header()}<div class="stack">
+    <div class="glass pad">
+      <div class="eyebrow">Tu misión · secreta</div>
+      <div class="reveal" id="rv"><div class="inner">
+        <h3>Tu víctima</h3><div class="victim">${esc(S.me.target)}</div>
+        <div class="sp"></div><h3>Tu acción secreta</h3><p class="big"><b>${esc(ACTIONS[S.me.action_id]||"")}</b></p>
+      </div><div class="hint">👆 Mantén pulsado para ver</div></div>
+      <p class="small" style="margin-top:12px">Que no te vea nadie. Memorízalo y guarda el móvil.</p>
+    </div>
+    <div class="glass pad"><h3>Tu arma · un solo uso</h3><p class="big">${ch.arma}</p></div>
+    ${rules}</div>`;
+}
+
+function juegosView(){
+  const n=S.norma; const left=n?Math.max(0,20*60e3-(Date.now()-n.t)):0;
+  return `${header()}<div class="stack">
+    <div class="glass pad">
+      <div class="eyebrow">Cena</div><h2>Las normas del pueblo</h2>
+      <div class="norma" id="nm">${n?esc(NORMAS[n.i]):"Pulsa para sacar la primera norma."}</div>
+      <div class="timer" id="nt">${n?(left>0?"Siguiente norma en "+fmtLeft(left):"⏰ ¡Toca norma nueva!"):"Cada norma dura 20 minutos. Quien la incumpla, bebe."}</div>
+      <button class="btn" id="nb">${n?"Nueva norma":"Sacar norma"}</button>
+    </div>
+    <div class="glass pad"><div class="eyebrow">Llegada</div><h2>Control de disfraces</h2>
+      <p>Revisión en la puerta del garaje. Sin la pieza clave ⭐: chupito de penitencia y juegas sin arma.</p></div>
+    <div class="glass pad"><div class="eyebrow">Sobremesa</div><h2>El Juicio de la Matanza ⚖️</h2>
+      <p>En corro y por turnos, cada uno señala a quien cree que va a por él. El acusado tiene que decir la verdad.</p>
+      <ul class="list"><li><b>Aciertas:</b> bebe el acusado (y ya sabes de quién cuidarte).</li><li><b>Fallas:</b> bebes tú.</li></ul></div>
+    <div class="glass pad"><div class="eyebrow">Escuelas</div><h2>Canción maldita 🎵</h2>
+      <p>La tuya está en tu tarjeta. Cuando suene: o sales a bailar o bebes.</p></div>
+    <div class="glass pad"><div class="eyebrow">Toda la noche</div><h2>Chupito de luto ☠️</h2>
+      <p>Cada muerte se celebra: la víctima se toma un chupito con su asesino.</p></div>
+    <div class="glass pad"><div class="eyebrow">4:00</div><h2>Premios 🏆</h2>
+      <ul class="list"><li><b>Matarife del año:</b> más muertes.</li><li><b>Mejor disfraz:</b> votación.</li><li><b>Muerte más absurda:</b> votación.</li></ul></div>
+  </div>`;
+}
+const fmtLeft=ms=>{const m=Math.floor(ms/6e4),s=Math.floor(ms/1e3)%60;return m+":"+String(s).padStart(2,"0")};
+
+function programaView(){
+  return `${header()}<div class="glass pad"><div class="eyebrow">Sábado 7 · Cañaveras</div><h2>Programa de la noche</h2>
+  <div class="tl">${PROGRAMA.map(([i,t,d])=>`<div class="it"><p class="big"><b>${i} ${esc(t)}</b></p><p>${esc(d)}</p></div>`).join("")}</div>
+  <p class="small">Lo de beber vale igual con refresco: aquí no se queda nadie fuera.</p></div>`;
+}
+
+let tick=null;
+function render(){
+  clearInterval(tick);
+  if(!S.me) return loginView();
+  const ch=CHARACTERS[S.me.character_id]||CHARACTERS[1];
+  paintBg(ch); nav();
+  app.innerHTML = S.tab==="mision"?misionView(ch):S.tab==="juegos"?juegosView():S.tab==="programa"?programaView():tarjetaView(ch);
+  $("#out").onclick=()=>{LS.del("sess");S.me=null;S.sel=null;S.tab="tarjeta";boot()};
+  const rv=$("#rv"); if(rv){const on=e=>{e.preventDefault();rv.classList.add("open")},off=()=>rv.classList.remove("open");
+    rv.addEventListener("pointerdown",on);rv.addEventListener("pointerup",off);rv.addEventListener("pointerleave",off);rv.addEventListener("pointercancel",off);
+    rv.addEventListener("contextmenu",e=>e.preventDefault());}
+  const nb=$("#nb"); if(nb) nb.onclick=()=>{let i; do{i=Math.floor(Math.random()*NORMAS.length)}while(S.norma&&i===S.norma.i);
+    S.norma={i,t:Date.now()}; LS.set("norma",S.norma); render();};
+  if(S.tab==="mision"&&!S.me.started){ tick=setInterval(async()=>{const el=$("#cd"); if(!el) return; el.textContent=countdown();
+      if(new Date(S.me.start_at)<=Date.now()+S.skew){ clearInterval(tick); const s=LS.get("sess"); if(s) try{await enter(s.name,s.pin)}catch(e){} } },1000); }
+  if(S.tab==="juegos"&&S.norma){ tick=setInterval(()=>{const el=$("#nt"); if(!el) return; const left=20*60e3-(Date.now()-S.norma.t);
+      el.textContent=left>0?"Siguiente norma en "+fmtLeft(left):"⏰ ¡Toca norma nueva!"},1000); }
+}
+
+async function boot(){
+  loginView();
+  const s=LS.get("sess",null);
+  if(s){ try{ await enter(s.name,s.pin); return; }catch(e){ LS.del("sess"); } }
+  try{ S.status=await rpc("matanza_status"); }catch(e){ S.err="No se puede conectar. Prueba otra vez en un momento."; }
+  loginView();
+}
+boot();
+</script>
+</body>
+</html>
