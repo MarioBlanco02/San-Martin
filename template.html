@@ -142,12 +142,12 @@ const CHARACTERS = [
   comp:"Si tu víctima <b>da una calada a tu pipa</b>, muere.",
   papel:[{t:"Brindis y juez",d:"Abres la fiesta con el brindis («¡A cada cerdo le llega su San Martín!») y eres el juez del Juicio de la Matanza: das los turnos y decides en caso de duda."}]},
  {n:"Alien",e:"👽",a:"#0e4a3a",acc:"#4ade80",scene:"La nave espacial",pat:["🛸","🌌","👽","⭐"],con:"Monti",
-  comp:"Si tu víctima <b>te toca el dedo índice con el suyo</b>, muere.",
+  comp:"Si tu víctima <b>mira al cielo</b> cuando le dices «¡mira, un ovni!», muere.",
   papel:[{t:"¡INVASIÓN!",d:"Hasta 3 veces en la noche, tú y tu pareja gritáis «¡INVASIÓN!»: todos al suelo y el último en agacharse bebe con vosotros."},
          {t:"Abducción",d:"2 veces, os lleváis a alguien a una prueba de humanidad: cantar, bailar 10 segundos o contar un chiste. Si no la supera, chupito."},
          {t:"Inmunidad marciana",d:"Las normas del pueblo no van con vosotros."}]},
  {n:"Alien",e:"👽",a:"#0e4a3a",acc:"#4ade80",scene:"La nave espacial",pat:["🛸","🌌","👽","⭐"],con:"Marco",
-  comp:"Si tu víctima <b>se pone tu antena o tus gafas</b> un segundo, muere.",
+  comp:"Si tu víctima <b>se deja llevar de la mano hasta la hoguera</b> y escucha tu dato random sobre aliens, muere.",
   papel:[{t:"¡INVASIÓN!",d:"Hasta 3 veces en la noche, tú y tu pareja gritáis «¡INVASIÓN!»: todos al suelo y el último en agacharse bebe con vosotros."},
          {t:"Abducción",d:"2 veces, os lleváis a alguien a una prueba de humanidad: cantar, bailar 10 segundos o contar un chiste. Si no la supera, chupito."},
          {t:"Inmunidad marciana",d:"Las normas del pueblo no van con vosotros."}]},
@@ -181,6 +181,15 @@ const CHARACTERS = [
  {n:"Ned Flanders",e:"🙏",a:"#0e4a6b",acc:"#38bdf8",scene:"La casa de Ned",pat:["🙏","🏡","📖","😇"],con:null,
   comp:"Si tu víctima <b>te contesta «¡holita!»</b> cuando le dices «¡Hola, holita, vecinito!», muere.",
   papel:[{t:"Guardián de la decencia",d:"Quien diga una palabrota delante de ti, bebe."}]},
+ {n:"Viejo",e:"👴",a:"#4a4a3a",acc:"#d6c9a5",scene:"El hogar del jubilado",pat:["👴","👵","🧓","🦯"],con:null,grupo:"Manu, Carmen y Carlos",
+  comp:"Si tu víctima <b>te ofrece el brazo</b> para ayudarte a levantarte o a andar, muere.",
+  papel:[{t:"¡En mis tiempos…!",d:"Una vez, señalas a alguien y tiene que contar algo de su infancia. Si no se le ocurre nada, bebe."}]},
+ {n:"Vieja",e:"👵",a:"#4a4a3a",acc:"#d6c9a5",scene:"El hogar del jubilado",pat:["👴","👵","🧓","🦯"],con:null,grupo:"Manu, Carmen y Carlos",
+  comp:"Si tu víctima <b>te ayuda a hacer algo</b> (cargar algo, abrir algo, alcanzarte algo…), muere.",
+  papel:[{t:"¡Siesta!",d:"Una vez, te haces la dormida y gritas «¡Siesta!». Todos callan y el primero que hable bebe."}]},
+ {n:"Viejo",e:"🧓",a:"#4a4a3a",acc:"#d6c9a5",scene:"El hogar del jubilado",pat:["👴","👵","🧓","🦯"],con:null,grupo:"Manu, Carmen y Carlos",
+  comp:"Si haces que tu víctima <b>repita en voz alta, subiendo el tono</b>, lo que te acaba de decir (por ejemplo, tras un «¿cómo?»), muere.",
+  papel:[{t:"Bastonazo",d:"Una vez, golpeas el suelo con tu bastón y quien señales se queda inmóvil 30 segundos. Si se mueve, bebe."}]},
 ];
 
 const ACTIONS = [ null,
@@ -225,6 +234,7 @@ const SONGS = [ null,
  "Suavemente · Elvis Crespo","Ai se eu te pego · Michel Teló","La Gozadera · Gente de Zona","Livin' la Vida Loca · Ricky Martin",
 ];
 
+const SONG_BY_NAME={Mario:9,Marco:8,Monti:21,Alba:3,Vero:19,Alicia:24,Sandra:22,Ignacio:15,"Pablo Blanco":12,"Rubén":13,Elena:5,Juanjo:4,Ismael:1,Carlos:2,Carmen:11,Sabina:17,Manu:14};
 const PROGRAMA = [
  ["🚪","Llegada","Control de disfraces en la puerta, chupito de bienvenida y brindis del Padrino."],
  ["🍽️","Tarde y cena","Normas del pueblo: quien las incumpla, bebe."],
@@ -252,7 +262,7 @@ async function rpc(fn, args){
 
 /* Modo prueba: simula el servidor en este navegador. ?ahora en la URL desbloquea las misiones. */
 function mock(fn,a){
-  const base={Mario:1,Marco:2,Monti:3,Alba:4,Vero:5,Alicia:6,Sandra:7,Ignacio:8,"Pablo Blanco":9,"Rubén":10,Elena:11,Juanjo:12,Ismael:13,Carlos:null,Carmen:null,Sabina:null,Manu:null};
+  const base={Mario:1,Marco:2,Monti:3,Alba:4,Vero:5,Alicia:6,Sandra:7,Ignacio:8,"Pablo Blanco":9,"Rubén":10,Elena:11,Juanjo:12,Ismael:13,Carlos:16,Carmen:15,Sabina:null,Manu:14};
   const db = LS.get("mock.db2",null) || {roster:base,players:{},missions:null};
   const start = new URL(location.href).searchParams.has("ahora") ? new Date(Date.now()-1000) : new Date("2026-11-07T17:00:00+01:00");
   const save=()=>LS.set("mock.db2",db), rnd=n=>1+Math.floor(Math.random()*n);
@@ -353,7 +363,7 @@ function pendingView(){
 
 function tarjetaView(ch){
   if(!ch) return pendingView();
-  const song=SONGS[S.me.song_id]||"";
+  const song=SONGS[SONG_BY_NAME[S.me.name]||S.me.song_id]||"";
   return `${header()}
   <div class="stack">
     <div class="glass pad rel">
@@ -361,7 +371,7 @@ function tarjetaView(ch){
       <div class="eyebrow">Expediente · ${esc(ch.scene)}</div>
       <div class="emoji">${ch.e}</div>
       <h1>${esc(ch.n)}</h1>
-      ${ch.con?`<p>Vas en pareja con <b>${esc(ch.con)}</b>.</p>`:`<p>Este disfraz solo lo lleváis tú y nadie más.</p>`}
+      ${ch.grupo?`<p>Sois tres: <b>${esc(ch.grupo)}</b>.</p>`:ch.con?`<p>Vas en pareja con <b>${esc(ch.con)}</b>.</p>`:`<p>Este disfraz solo lo lleváis tú y nadie más.</p>`}
     </div>
     <div class="glass pad">
       <h3>🗝️ Tu arma secreta (acción complementaria)</h3>
