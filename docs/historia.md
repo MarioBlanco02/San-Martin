@@ -8,7 +8,7 @@ Las fiestas las controla desde su garaje el Padrino, que esa misma noche celebra
 
 Esa tarde se vio una luz extraña sobre los campos: dos aliens han aterrizado junto a las escuelas. Vienen a estudiar a los humanos y no entienden nada de sus costumbres.
 
-Tras ellos ha llegado el FBI, que también aprovecha para investigar los negocios del Padrino.
+Tras ellos ha llegado el FBI, que también aprovecha para investigar los negocios del Padrino. Y detrás, en silencio, un Hombre de Negro de una agencia que no existe: su misión es que nadie recuerde lo que pase esta noche.
 
 Y por el camino del pueblo acaban de entrar dos vaqueras forasteras, que buscan a alguien y traen cuentas pendientes.
 
@@ -21,9 +21,10 @@ Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 | Mario | 🎩 Padrino | Su víctima da una calada a su pipa | Brindis inicial y juez del Juicio de la Matanza |
 | Marco / Monti | 👽 Aliens | 1: le toca el dedo índice con el suyo · 2: se deja «escanear» (mano delante de la cara) | ¡INVASIÓN! (3 veces: todos al suelo, el último bebe), abducciones (prueba de humanidad) e inmunidad marciana a las normas |
 | Alba / Vero | 🕵️ FBI | 1: le dice su fecha de nacimiento · 2: le enseña la última foto de su móvil | Control de disfraces en la puerta, con cacheo |
+| Ignacio | 🕶️ Hombre de Negro | Su víctima mira fijamente su «neuralizador» (boli o flash del móvil) cuando le dice «mira aquí» | Neuralizador: 2 veces libra a alguien de beber; y puede cazar a los aliens saltándose una norma: beben doble |
 | Alicia / Sandra | 🤠 Vaqueras | 1: se toma un chupito con ella · 2: se deja poner su sombrero | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
 
-Pendientes de confirmar: Elena, Juanjo, Pablo Blanco, Rubén, Carmen, Ignacio, Sabina, Manu, Ismael.
+Pendientes de confirmar: Elena, Juanjo, Pablo Blanco, Rubén, Carmen, Sabina, Manu, Ismael.
 
 ## Decisiones
 
