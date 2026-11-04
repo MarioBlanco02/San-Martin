@@ -34,7 +34,7 @@ Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 | Elena | 🎤 King África | Su víctima imita el paso de baile que ella le enseña | Concierto: una vez, en las escuelas, dirige un baile en grupo; quien no lo siga, bebe |
 | Alicia / Sandra | 🤠 Vaqueras | 1: se toma un chupito con ella · 2: se deja poner su sombrero | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
 
-Pendientes de confirmar: Juanjo, Carmen, Sabina, Manu.
+Pendientes de confirmar: Carlos (nuevo), Juanjo, Carmen, Sabina, Manu.
 
 ## Decisiones
 
