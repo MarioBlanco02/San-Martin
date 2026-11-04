@@ -39,3 +39,6 @@ Web del cumpleaños en Cañaveras (sábado 7 de noviembre). Cada invitado entra 
 ## Probar en local
 
 `python build.py` y abre `site/index.html`. Añade `?ahora` a la URL para simular que ya es la hora de la cena.
+
+- Asignar personaje a alguien pendiente: `update public.matanza_roster set character_id = 14 where name = 'Carlos';` (y añadir el personaje al array `CHARACTERS` de `template.html`).
+- Cualquiera no listado puede apuntarse desde la web (botón «¿No estás en la lista?»); queda sin personaje hasta que se le asigne.
