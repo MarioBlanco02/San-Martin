@@ -124,6 +124,18 @@ h1{text-shadow:0 0 28px color-mix(in srgb,var(--accent) 55%,transparent)}
 .chip{transition:transform .15s,background .2s}.chip:active{transform:scale(.95)}
 .chip.sel{box-shadow:0 0 22px rgba(255,255,255,.5)}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* ---- Leyenda ---- */
+.story .chap{opacity:0;animation:chapIn .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes chapIn{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.story .num{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:6px}
+.story h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;color:#fff;text-transform:none}
+.story p{line-height:1.6}
+.story .first::first-letter{float:left;font-size:54px;line-height:.9;font-weight:900;margin:4px 8px 0 0;color:var(--accent)}
+.story .end{font-weight:800;font-size:18px}
+.storyov{position:fixed;inset:0;z-index:60;overflow-y:auto;background:rgba(6,2,4,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:18px 14px 60px}
+.storyov .wrap{max-width:560px;margin:0 auto}
+.storyov .x{position:fixed;top:14px;right:14px;z-index:2;width:auto;padding:10px 16px;background:rgba(20,8,12,.92);border-radius:999px}
 </style>
 </head>
 <body>
@@ -324,6 +336,29 @@ function paintBg(ch){
   bg.innerHTML=h;
 }
 
+
+/* ============ LA LEYENDA (pistas sin nombres ni disfraces) ============ */
+const STORY = [
+ ["Prólogo","Noviembre nunca llega solo","Cuentan los viejos de Cañaveras que noviembre nunca llega solo. Llega con frío, con humo de chimenea y con una costumbre más vieja que la torre: <i>a cada cerdo le llega su San Martín</i>. Pero este año, una mañana, los caballos de piedra de la fuente amanecieron mirando hacia el camino. Como si esperaran a alguien."],
+ ["I","La luz que no cayó","El martes, poco antes de medianoche, una luz cruzó el cielo por encima del cerro. Al principio parecía una estrella fugaz. Pero no cayó: se paró. Se quedó quieta sobre la torre de San Martín, parpadeó dos veces y se fue sin hacer ruido. Al día siguiente, en los campos de girasol, alguien encontró unos círculos demasiado perfectos."],
+ ["II","Gafas oscuras","Dos días después llegó un coche negro con matrícula de fuera. Dos desconocidas preguntaron en el bar por «algo que cayó del cielo». Traían una carpeta en la que ponía CONFIDENCIAL y no se quitaron las gafas ni dentro. Unos pasos por detrás, siempre, un hombre de traje que nadie recuerda haber visto entrar. Quien hablaba con él no se acordaba luego de qué. Solo de un destello. Y después, nada."],
+ ["III","La cadena","Esa misma noche sonaron sirenas por la carretera de Cuenca. Alguien se había escapado. En el barro del camino apareció la huella de una bota y, a su lado, una marca larga, como de algo pesado arrastrado con una cadena. Nadie en el pueblo cerró la puerta con llave. Y alguno lo lamentará."],
+ ["IV","Ojos cerrados","Desde entonces, a las tres de la mañana, una figura cruza la plaza con los ojos cerrados y los brazos por delante. No tropieza. No se para. Nadie se ha atrevido a despertarla, y dicen que es mejor así. Y al amanecer, unos pasos rápidos, siempre los mismos y siempre al mismo ritmo, dan vueltas y vueltas al pueblo, como si alguien huyera de algo… o fuera a por ello."],
+ ["V","Polvo y tambores","Del lado del cerro llegó un olor a pólvora y un tintineo metálico, de espuelas. Dos sombras con el ala bien calada esperaron al alba junto a la fuente, como si alguien les debiera algo. Y desde algún sitio muy lejano empezó a sonar un ritmo tropical, de tambores, que nadie supo de dónde salía y que hizo bailar hasta a las campanas."],
+ ["VI","La gente de bien","Hubo quien quiso poner orden. Un vecino amabilísimo, de sonrisa perpetua, que saluda a todo el mundo tres veces y se santigua cada vez que alguien suelta una palabrota. En el hogar del jubilado, tres bastones golpean el suelo a la vez: «En mis tiempos esto no pasaba». Y en una cocina, una olla lleva tres días hirviendo. Una cuchara de madera remueve sin parar. «A esto le falta sal», dice una voz. Nadie ha preguntado qué hay dentro."],
+ ["VII","El hombre que nunca grita","Por encima de todos, un hombre que nunca levanta la voz. Fuma en pipa, lleva una rosa roja en la solapa y hace tratos que nadie se atreve a rechazar. Dicen que fue él quien escribió diecisiete nombres en un papel. Que lo dobló dos veces. Y que lo echó al fuego."],
+ ["Epílogo","Diecisiete sombras","El sábado 7 de noviembre, a las 21:30, las diecisiete sombras se sentarán a la misma mesa. Habrá cena, hoguera y música hasta muy tarde. Y habrá muertos. Tu nombre ya está en esa lista. Alguien lo sabe. Lo que tú no sabes… es quién."],
+];
+function storyHTML(){
+  return `<div class="stack story">${STORY.map(([n,t,x],i)=>`<div class="glass pad chap" style="animation-delay:${0.15+i*0.35}s">
+    <div class="num">${n}</div><h3>${t}</h3><p class="${i===0?"first":""} ${i===STORY.length-1?"end":""}">${x}</p></div>`).join("")}</div>`;
+}
+function openStory(){
+  const d=document.createElement("div"); d.className="storyov";
+  d.innerHTML=`<div class="wrap"><button class="btn ghost x" id="sx">Cerrar ✕</button><div class="eyebrow" style="margin:58px 4px 10px">La leyenda</div>${storyHTML()}</div>`;
+  document.body.appendChild(d); d.querySelector("#sx").onclick=()=>d.remove();
+}
+
 /* ---- Entrada ---- */
 function loginView(){
   paintBg(null); tabsEl.classList.add("hidden");
@@ -339,6 +374,7 @@ function loginView(){
       <p>A cada cerdo le llega su San Martín… Alguien ya tiene tu nombre en una lista. Elige el tuyo.</p>
       <div class="names">${chips||'<p class="small">Cargando invitados…</p>'}</div>
       <p class="small" style="margin-top:14px">Lista sacada de la encuesta de WhatsApp.</p>
+      <button class="btn ghost" id="storyb" style="margin-top:10px">📜 Lee la leyenda antes de entrar</button>
       ${S.join?`<form id="joinf" style="margin-top:8px"><input class="field txt" id="jn" maxlength="24" autocomplete="off" placeholder="Tu nombre" required>
         <button class="btn">Apuntarme</button></form>`:`<button class="btn ghost" id="joinb">¿No estás en la lista? Apúntate</button>`}
       ${!S.sel&&S.err?`<div class="err">${esc(S.err)}</div>`:""}
@@ -352,6 +388,7 @@ function loginView(){
     </form>`:""}
   </div>`;
   app.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{S.sel=b.dataset.n;S.err="";loginView();setTimeout(()=>{const i=$("#pin");i&&i.focus()},50)});
+  const sb=$("#storyb"); if(sb) sb.onclick=openStory;
   const jb=$("#joinb"); if(jb) jb.onclick=()=>{S.join=true;S.sel=null;S.err="";loginView();setTimeout(()=>{const i=$("#jn");i&&i.focus()},50)};
   const jf=$("#joinf"); if(jf) jf.onsubmit=async e=>{e.preventDefault(); const n=$("#jn").value;
     try{ S.status=await rpc("matanza_join",{p_name:n}); S.join=false; S.sel=S.status.name; S.err=""; }catch(err){ S.err=err.message; }
@@ -367,7 +404,7 @@ async function enter(name,pin){
 }
 
 /* ---- Pestañas ---- */
-const TABS=[["tarjeta","🎭","Personaje"],["mision","🔪","Misión"],["reglas","📜","Reglas"]];
+const TABS=[["tarjeta","🎭","Personaje"],["mision","🔪","Misión"],["leyenda","🕯️","Leyenda"],["reglas","📜","Reglas"]];
 function nav(){
   tabsEl.classList.remove("hidden");
   tabsEl.innerHTML=TABS.map(([k,i,l])=>`<button class="tab ${S.tab===k?"on":""}" data-t="${k}"><span>${i}</span>${l}</button>`).join("");
@@ -468,7 +505,7 @@ function render(){
   if(!S.me) return loginView();
   const ch=CHARACTERS[S.me.character_id]||null;
   paintBg(ch); nav(); scrollTo(0,0);
-  app.innerHTML = S.tab==="mision"?misionView(ch):S.tab==="reglas"?reglasView():tarjetaView(ch);
+  app.innerHTML = S.tab==="mision"?misionView(ch):S.tab==="reglas"?reglasView():S.tab==="leyenda"?`${header()}${storyHTML()}`:tarjetaView(ch);
   $("#out").onclick=()=>{LS.del("sess");S.me=null;S.sel=null;S.tab="tarjeta";boot()};
   const rv=$("#rv"); if(rv){const on=e=>{e.preventDefault();rv.classList.add("open")},off=()=>rv.classList.remove("open");
     rv.addEventListener("pointerdown",on);rv.addEventListener("pointerup",off);rv.addEventListener("pointerleave",off);rv.addEventListener("pointercancel",off);
