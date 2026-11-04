@@ -70,6 +70,60 @@ p{margin:0 0 10px;line-height:1.45;color:var(--ink2);font-size:16px}
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .link{background:none;border:0;color:var(--ink3);font-size:14px;cursor:pointer;padding:6px}
 .hidden{display:none!important}
+
+/* ===== v3: misterio y movimiento ===== */
+.bg:before{content:"";position:absolute;inset:-20%;z-index:1;pointer-events:none;
+  background:radial-gradient(40% 30% at 20% 30%,rgba(255,255,255,.07),transparent 70%),radial-gradient(45% 35% at 80% 70%,rgba(255,255,255,.06),transparent 70%);
+  animation:fog 22s ease-in-out infinite alternate}
+.bg:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(0,0,0,.75) 100%);animation:flick 5s steps(1) infinite}
+@keyframes fog{to{transform:translate(8%,-6%) scale(1.15)}}
+@keyframes flick{0%,100%{opacity:1}46%{opacity:1}47%{opacity:.82}48%{opacity:1}71%{opacity:.9}72%{opacity:1}}
+.ember{position:absolute;bottom:-10px;width:4px;height:4px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);opacity:0;z-index:1;animation:rise linear infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translateY(-105vh) translateX(30px)}}
+.app>.stack>*,.app>.top{animation:up .7s cubic-bezier(.2,.8,.2,1) both}
+.app>.stack>*:nth-child(2){animation-delay:.12s}.app>.stack>*:nth-child(3){animation-delay:.24s}
+.app>.stack>*:nth-child(4){animation-delay:.36s}.app>.stack>*:nth-child(5){animation-delay:.48s}
+@keyframes up{from{opacity:0;transform:translateY(22px) scale(.98);filter:blur(6px)}}
+h1{text-shadow:0 0 28px color-mix(in srgb,var(--accent) 55%,transparent)}
+.emoji{animation:pulse 3.4s ease-in-out infinite;filter:drop-shadow(0 0 26px var(--accent))}
+@keyframes pulse{50%{transform:scale(1.07) rotate(-3deg)}}
+.glitch{position:relative;display:inline-block}
+.glitch:before,.glitch:after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden;opacity:0}
+.glitch:before{color:#ff2a4d;animation:gl1 4s infinite steps(1);clip-path:inset(0 0 55% 0)}
+.glitch:after{color:#35e0ff;animation:gl2 4s infinite steps(1);clip-path:inset(55% 0 0 0)}
+@keyframes gl1{0%,92%,100%{transform:none;opacity:0}93%{transform:translate(-3px,1px);opacity:.8}95%{transform:translate(3px,-1px);opacity:.8}96%{opacity:0}}
+@keyframes gl2{0%,92%,100%{transform:none;opacity:0}94%{transform:translate(3px,1px);opacity:.8}96%{transform:translate(-3px,-1px);opacity:.8}97%{opacity:0}}
+.stamp{position:absolute;right:16px;bottom:18px;border:2px solid var(--accent);color:var(--accent);padding:3px 10px;border-radius:6px;
+  font-weight:800;font-size:12px;letter-spacing:.2em;transform:rotate(8deg);opacity:0;animation:stamp .5s .9s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes stamp{from{opacity:0;transform:rotate(8deg) scale(2.6)}to{opacity:.9;transform:rotate(8deg) scale(1)}}
+.rel{position:relative}
+.drip{height:3px;border-radius:3px;margin:10px 0 0;width:0;background:linear-gradient(90deg,var(--accent),transparent);animation:grow 1.2s .3s ease-out forwards}
+@keyframes grow{to{width:70%}}
+.count.pulse{animation:cd 1s infinite;text-shadow:0 0 24px var(--accent)}
+@keyframes cd{50%{opacity:.55}}
+.lock{font-size:46px;animation:shake 5s infinite;display:inline-block}
+@keyframes shake{0%,90%,100%{transform:none}92%{transform:rotate(-12deg)}94%{transform:rotate(10deg)}96%{transform:rotate(-8deg)}98%{transform:rotate(4deg)}}
+.reveal{border:1px solid color-mix(in srgb,var(--accent) 60%,transparent);box-shadow:0 0 30px color-mix(in srgb,var(--accent) 35%,transparent) inset}
+.reveal:before{content:"";position:absolute;left:0;right:0;height:2px;z-index:2;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:scan 2.4s linear infinite;box-shadow:0 0 14px var(--accent)}
+.reveal.open:before{display:none}
+@keyframes scan{from{top:0}to{top:100%}}
+.reveal.open .victim{animation:rv .6s both}
+@keyframes rv{from{letter-spacing:.4em;opacity:0;filter:blur(8px)}}
+.reveal .hint{flex-direction:column;gap:4px;letter-spacing:.06em}
+.reveal .hint span{font-size:30px;animation:pulse 2s infinite}
+.intro{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;transition:opacity 1s}
+.intro.out{opacity:0;pointer-events:none}
+.intro .pig{font-size:90px;animation:pulse 2s infinite;filter:drop-shadow(0 0 30px #ff2a4d)}
+.intro .l1{font-size:25px;font-weight:800;letter-spacing:.02em;margin-top:18px;min-height:64px;color:#fff;max-width:340px}
+.intro .slash{position:absolute;left:-10%;top:50%;width:120%;height:5px;background:linear-gradient(90deg,transparent,#ff2a4d,#fff,#ff2a4d,transparent);transform:rotate(-14deg) scaleX(0);box-shadow:0 0 30px #ff2a4d;opacity:0}
+.intro.cut .slash{animation:slash .5s forwards}
+@keyframes slash{0%{transform:rotate(-14deg) scaleX(0);opacity:1}60%{transform:rotate(-14deg) scaleX(1);opacity:1}100%{transform:rotate(-14deg) scaleX(1);opacity:0}}
+.intro.cut .pig{animation:split .6s forwards}
+@keyframes split{to{transform:translateY(-14px) rotate(-8deg);opacity:0;filter:blur(6px)}}
+.chip{transition:transform .15s,background .2s}.chip:active{transform:scale(.95)}
+.chip.sel{box-shadow:0 0 22px rgba(255,255,255,.5)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
 <body>
@@ -235,6 +289,7 @@ function paintBg(ch){
   let h = `<div class="hero">${ch?ch.e:"🐷"}</div>`;
   for(let i=0;i<16;i++){ const x=(i*37)%100, y=(i*61)%100, d=(i%5)*1.7;
     h+=`<div class="pat" style="left:${x}%;top:${y}%;animation-delay:-${d}s">${pat[i%pat.length]}</div>`; }
+  for(let i=0;i<14;i++){ h+=`<div class="ember" style="left:${(i*73)%100}%;animation-duration:${7+(i*3)%8}s;animation-delay:-${(i*2.3)%9}s"></div>`; }
   bg.innerHTML=h;
 }
 
@@ -249,8 +304,8 @@ function loginView(){
   <div class="stack">
     <div class="glass pad">
       <div class="eyebrow">Cañaveras · Sábado 7 de noviembre</div>
-      <h1>La Matanza de San Martín 🐷</h1>
-      <p>A cada cerdo le llega su San Martín… Elige tu nombre para ver tu personaje.</p>
+      <h1><span class="glitch" data-t="La Matanza de San Martín">La Matanza de San Martín</span> 🐷</h1><div class="drip"></div>
+      <p>A cada cerdo le llega su San Martín… Alguien ya tiene tu nombre en una lista. Elige el tuyo.</p>
       <div class="names">${chips||'<p class="small">Cargando invitados…</p>'}</div>
       <p class="small" style="margin-top:14px">Lista sacada de la encuesta de WhatsApp.</p>
       ${S.join?`<form id="joinf" style="margin-top:8px"><input class="field txt" id="jn" maxlength="24" autocomplete="off" placeholder="Tu nombre" required>
@@ -301,19 +356,20 @@ function tarjetaView(ch){
   const song=SONGS[S.me.song_id]||"";
   return `${header()}
   <div class="stack">
-    <div class="glass pad">
-      <div class="eyebrow">Tu personaje · ${esc(ch.scene)}</div>
+    <div class="glass pad rel">
+      <div class="stamp">CONFIDENCIAL</div>
+      <div class="eyebrow">Expediente · ${esc(ch.scene)}</div>
       <div class="emoji">${ch.e}</div>
       <h1>${esc(ch.n)}</h1>
       ${ch.con?`<p>Vas en pareja con <b>${esc(ch.con)}</b>.</p>`:`<p>Este disfraz solo lo lleváis tú y nadie más.</p>`}
     </div>
     <div class="glass pad">
-      <h3>Tu acción complementaria</h3>
+      <h3>🗝️ Tu arma secreta (acción complementaria)</h3>
       <p class="big">${ch.comp}</p>
       <p class="small">Es otra forma de matar, ligada a tu disfraz. Solo vale con tu víctima y <b>una sola vez</b>: si lo intentas y no funciona, se gasta. Todos conocerán estas acciones el sábado.</p>
     </div>
     <div class="glass pad">
-      <h3>Tu papel en la fiesta</h3>
+      <h3>🎭 Tu papel en la fiesta</h3>
       ${ch.papel.map(p=>`<h2>${esc(p.t)}</h2><p class="big">${esc(p.d)}</p>`).join("")}
     </div>
     <div class="glass pad">
@@ -340,18 +396,18 @@ function misionView(ch){
     <li><b>Si te matan:</b> dile al oído a tu asesino tu víctima y tu acción secreta. Él sigue con ellas. Tu complementaria no se hereda. Y chupito de luto juntos ☠️</li>
     <li><b>A las 4:00 se acaba.</b> Gana quien más muertes lleve.</li></ul></div>`;
   if(!S.me.started) return `${header()}<div class="stack">
-    <div class="glass pad"><div class="eyebrow">Misión bloqueada</div><h2>Tu víctima se revela el sábado</h2>
-    <div class="count" id="cd">${countdown()}</div><p class="small">${esc(fmtDate(S.me.start_at))}</p></div>${rules}</div>`;
+    <div class="glass pad"><div class="eyebrow">Misión bloqueada</div><div class="lock">🔒</div><h2>Alguien te está buscando. Y tú a alguien.</h2>
+    <div class="count pulse" id="cd">${countdown()}</div><p class="small">${esc(fmtDate(S.me.start_at))}</p></div>${rules}</div>`;
   if(S.me.late||!S.me.target) return `${header()}<div class="stack">
     <div class="glass pad"><div class="eyebrow">Llegas tarde</div><h2>El sorteo ya está hecho</h2>
     <p>Díselo a Mario: puede repetir el sorteo para meterte.</p></div>${rules}</div>`;
   return `${header()}<div class="stack">
     <div class="glass pad">
-      <div class="eyebrow">Tu misión · secreta</div>
+      <div class="eyebrow">Objetivo · alto secreto</div>
       <div class="reveal" id="rv"><div class="inner">
         <h3>Tu víctima</h3><div class="victim">${esc(S.me.target)}</div>
         <div class="sp"></div><h3>Tu acción secreta</h3><p class="big"><b>${esc(ACTIONS[S.me.action_id]||"")}</b></p>
-      </div><div class="hint">👆 Mantén pulsado para ver</div></div>
+      </div><div class="hint"><span>🎯</span>Mantén pulsado para ver</div></div>
       <p class="small" style="margin-top:12px">Que no te vea nadie. Memorízalo y guarda el móvil.</p>
     </div>
     ${ch?`<div class="glass pad"><h3>Tu acción complementaria · un solo uso</h3><p class="big">${ch.comp}</p></div>`:""}
@@ -380,7 +436,7 @@ function render(){
   clearInterval(tick);
   if(!S.me) return loginView();
   const ch=CHARACTERS[S.me.character_id]||null;
-  paintBg(ch); nav();
+  paintBg(ch); nav(); scrollTo(0,0);
   app.innerHTML = S.tab==="mision"?misionView(ch):S.tab==="reglas"?reglasView():tarjetaView(ch);
   $("#out").onclick=()=>{LS.del("sess");S.me=null;S.sel=null;S.tab="tarjeta";boot()};
   const rv=$("#rv"); if(rv){const on=e=>{e.preventDefault();rv.classList.add("open")},off=()=>rv.classList.remove("open");
@@ -397,6 +453,16 @@ async function boot(){
   try{ S.status=await rpc("matanza_status"); }catch(e){ S.err="No se puede conectar. Prueba otra vez en un momento."; }
   loginView();
 }
+function intro(){
+  if(sessionStorage.getItem("intro")) return; try{sessionStorage.setItem("intro","1")}catch(e){}
+  const d=document.createElement("div"); d.className="intro";
+  d.innerHTML='<div class="slash"></div><div class="pig">🐷</div><div class="l1"></div>'; document.body.appendChild(d);
+  const t="A cada cerdo le llega su San Martín…", el=d.querySelector(".l1"); let i=0;
+  const iv=setInterval(()=>{el.textContent=t.slice(0,++i); if(i>=t.length){clearInterval(iv);
+    setTimeout(()=>d.classList.add("cut"),500); setTimeout(()=>d.classList.add("out"),1100); setTimeout(()=>d.remove(),2200);}},55);
+  d.onclick=()=>{clearInterval(iv);d.classList.add("out");setTimeout(()=>d.remove(),900)};
+}
+intro();
 boot();
 </script>
 </body>
