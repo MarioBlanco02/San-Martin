@@ -14,6 +14,8 @@ Esa misma mañana, además, se ha fugado un preso de la cárcel y dicen que se e
 
 Y por el camino del pueblo acaban de entrar dos vaqueras forasteras, que buscan a alguien y traen cuentas pendientes.
 
+Con tanto jaleo, un vecino ha salido de casa en pijama: no sabe si está despierto o soñando.
+
 Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 
 ## Reparto confirmado
@@ -25,9 +27,10 @@ Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 | Alba / Vero | 🕵️ FBI | 1: le dice su fecha de nacimiento · 2: le enseña la última foto de su móvil | Control de disfraces en la puerta, con cacheo |
 | Ignacio | 🕶️ Hombre de Negro | Su víctima mira fijamente su «neuralizador» (boli o flash del móvil) cuando le dice «mira aquí» | Neuralizador: 2 veces libra a alguien de beber; y puede cazar a los aliens saltándose una norma: beben doble |
 | Pablo Blanco | ⛓️ El Preso fugado | Su víctima le guarda algo en el bolsillo («escóndeme esto») | Motín: una vez anula la norma vigente y elige quién bebe; el FBI puede esposarle 10 min con una servilleta |
+| Rubén | 😴 El Sonámbulo (pijama) | Su víctima le dice «buenas noches» | Pesadilla: una vez, cuenta su «pesadilla» a alguien y tiene que hacerla (hablar dormido 5 min, bailar con los ojos cerrados…); si no, bebe |
 | Alicia / Sandra | 🤠 Vaqueras | 1: se toma un chupito con ella · 2: se deja poner su sombrero | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
 
-Pendientes de confirmar: Elena, Juanjo, Rubén, Carmen, Sabina, Manu, Ismael.
+Pendientes de confirmar: Elena, Juanjo, Carmen, Sabina, Manu, Ismael.
 
 ## Decisiones
 
