@@ -41,6 +41,6 @@ Pendientes de confirmar: Ismael (Ned Flanders o Tortuga Ninja), Carlos (nuevo), 
 - La misión (víctima + acción secreta) se ve al entrar con el PIN; el sorteo se hace con antelación con toda la lista.
 - La tarjeta no da ideas de disfraz.
 - Sin disfraz: chupito de penitencia y sin arma/poder.
-- Premios: Matarife del año, Mejor disfraz, Muerte más absurda.
+- Premios: solo dos. Mejor disfraz (votación) y quien más haya matado.
 - Bienvenida: control de disfraces (FBI) → chupito de bienvenida → brindis del Padrino.
 - Programa: normas del pueblo (cena), Juicio de la Matanza (sobremesa), canción maldita (escuelas), chupito de luto (toda la noche).
