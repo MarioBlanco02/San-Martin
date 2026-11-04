@@ -241,7 +241,7 @@ const SONGS = [ null,
  "Follow the Leader · Soca Boys",
  "Mi Refe · Beéle, Ovy On The Drums",
  "Rasputin · Boney M",
- "Gata Only · FloyyMenor, Cris MJ",
+ "Las Babys · Aitana",
  "La Tarantela",
  "Aserejé · Las Ketchup",
  "Despacito · Luis Fonsi",
@@ -252,7 +252,7 @@ const SONGS = [ null,
  "Ella no sigue modas · Don Omar, Juan Magán",
 ];
 
-const SONG_BY_NAME={Mario:16,Marco:2,Monti:7,Alba:4,Vero:8,Alicia:15,Sandra:11,Ignacio:10,"Pablo Blanco":13,"Rubén":12,Elena:5,Juanjo:6,Ismael:14,Carlos:3,Carmen:1,Sabina:17,Manu:9};
+const SONG_BY_NAME={"Mario": 16, "Monti": 10, "Alicia": 7};
 const PROGRAMA = [
  ["🚪","Llegada","Control de disfraces en la puerta, chupito de bienvenida y brindis del Padrino."],
  ["🍽️","Tarde y cena","Normas del pueblo: quien las incumpla, bebe."],
@@ -381,7 +381,7 @@ function pendingView(){
 
 function tarjetaView(ch){
   if(!ch) return pendingView();
-  const song=SONGS[SONG_BY_NAME[S.me.name]||S.me.song_id]||"";
+  const song=SONGS[SONG_BY_NAME[S.me.name]]||"";
   return `${header()}
   <div class="stack">
     <div class="glass pad rel">
@@ -400,11 +400,11 @@ function tarjetaView(ch){
       <h3>🎭 Tu papel en la fiesta</h3>
       ${ch.papel.map(p=>`<h2>${esc(p.t)}</h2><p class="big">${esc(p.d)}</p>`).join("")}
     </div>
-    <div class="glass pad">
+    ${song?`    <div class="glass pad">
       <h3>Tu canción maldita · escuelas</h3>
       <p class="big">🎵 <b>${esc(song)}</b></p>
       <p class="small">Cuando suene: o sales a bailar o bebes.</p>
-    </div>
+    </div>`:""}
     <p class="small" style="text-align:center">Sin disfraz el sábado: chupito de penitencia y juegas sin acción complementaria ni papel.</p>
   </div>`;
 }
