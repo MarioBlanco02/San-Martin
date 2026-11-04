@@ -16,6 +16,8 @@ Y por el camino del pueblo acaban de entrar dos vaqueras forasteras, que buscan 
 
 Al vecino más bueno y beato del pueblo todo este alboroto le parece una indecencia, y ha venido a poner orden. Con tanto jaleo, otro vecino ha salido de casa en pijama: no sabe si está despierto o soñando.
 
+Para cerrar las fiestas, el ayuntamiento ha contratado a una estrella de los 90: King África, que actuará en las escuelas.
+
 Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 
 ## Reparto confirmado
@@ -29,9 +31,10 @@ Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 | Pablo Blanco | ⛓️ El Preso fugado | Su víctima le guarda algo en el bolsillo («escóndeme esto») | Motín: una vez anula la norma vigente y elige quién bebe; el FBI puede esposarle 10 min con una servilleta |
 | Rubén | 😴 El Sonámbulo (pijama) | Su víctima le dice «buenas noches» | Pesadilla: una vez, cuenta su «pesadilla» a alguien y tiene que hacerla (hablar dormido 5 min, bailar con los ojos cerrados…); si no, bebe |
 | Ismael | 🙏 Ned Flanders | Su víctima le contesta «¡holita!» a su «¡Hola, holita, vecinito!» | Guardián de la decencia: quien diga una palabrota delante de él, bebe |
+| Elena | 🎤 King África | Su víctima imita el paso de baile que ella le enseña | Concierto: una vez, en las escuelas, dirige un baile en grupo; quien no lo siga, bebe |
 | Alicia / Sandra | 🤠 Vaqueras | 1: se toma un chupito con ella · 2: se deja poner su sombrero | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
 
-Pendientes de confirmar: Elena, Juanjo, Carmen, Sabina, Manu.
+Pendientes de confirmar: Juanjo, Carmen, Sabina, Manu.
 
 ## Decisiones
 
