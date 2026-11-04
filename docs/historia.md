@@ -32,9 +32,10 @@ Cada invitado oculta algo. Al amanecer, solo uno quedará en pie. 🔪
 | Rubén | 😴 El Sonámbulo (pijama) | Su víctima le dice «buenas noches» | Pesadilla: una vez, cuenta su «pesadilla» a alguien y tiene que hacerla (hablar dormido 5 min, bailar con los ojos cerrados…); si no, bebe |
 | Ismael (⚠️ pendiente: Ned Flanders o Tortuga Ninja) | 🙏 Ned Flanders | Su víctima le contesta «¡holita!» a su «¡Hola, holita, vecinito!» | Guardián de la decencia: quien diga una palabrota delante de él, bebe |
 | Elena | 🎤 King África | Su víctima imita el paso de baile que ella le enseña | Concierto: una vez, en las escuelas, dirige un baile en grupo; quien no lo siga, bebe |
+| Juanjo | 🏃 Runner | Su víctima le choca la mano como en un relevo | Calentamiento: una vez, todos hacen 10 sentadillas; el último bebe |
 | Alicia / Sandra | 🤠 Vaqueras | 1: se toma un chupito con ella · 2: se deja poner su sombrero | Duelos del saloon (piedra, papel o tijera; quien pierde bebe) |
 
-Pendientes de confirmar: Ismael (Ned Flanders o Tortuga Ninja), Carlos (nuevo), Juanjo, Carmen, Sabina, Manu.
+Pendientes de confirmar: Ismael (Ned Flanders o Tortuga Ninja), Carlos (nuevo), Carmen, Sabina, Manu.
 
 ## Decisiones
 
