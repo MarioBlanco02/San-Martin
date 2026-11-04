@@ -205,6 +205,9 @@ const CHARACTERS = [
  {n:"Cocinera",e:"👩‍🍳",a:"#7a2e12",acc:"#fbbf24",scene:"La cocina de la matanza",pat:["🍳","🥘","🔪","🧂"],con:null,
   comp:"Si tu víctima <b>prueba lo que le ofreces con la cuchara</b> («¿le falta sal?»), muere.",
   papel:[{t:"Cata del chef",d:"Una vez, haces que alguien pruebe tu bebida y le das nota. Si no cuadra con tu veredicto, bebe."}]},
+ {n:"Gato con botas",e:"🐈",a:"#5a2d0c",acc:"#f59e0b",scene:"El castillo del marqués",pat:["🐈","👢","🪶","🗡️"],con:null,
+  comp:"Si tu víctima <b>te devuelve la reverencia</b> cuando le haces la tuya quitándote el sombrero, muere.",
+  papel:[{t:"El marqués de Carabás",d:"Una vez, nombras a alguien tu sirviente durante 10 minutos: te trae lo que le pidas. Si se niega, bebe."}]},
 ];
 
 const ACTIONS = [ null,
@@ -265,9 +268,10 @@ const SONGS = [ null,
  "Besos · El Canto del Loco",
  "Todos los días sale el sol (Ey, chipirón) · Bongo Botrako",
  "Ella no sigue modas · Don Omar, Juan Magán",
+ "Princesas · Pereza"
 ];
 
-const SONG_BY_NAME={"Mario": 16, "Marco": 2, "Monti": 10, "Alba": 4, "Vero": 8, "Alicia": 7, "Sandra": 11, "Ignacio": 15, "Pablo Blanco": 13, "Rubén": 12, "Elena": 5, "Juanjo": 23, "Ismael": 22, "Carlos": 3, "Carmen": 1, "Sabina": 17, "Manu": 9};
+const SONG_BY_NAME={"Mario": 16, "Marco": 2, "Monti": 10, "Alba": 4, "Vero": 8, "Alicia": 7, "Sandra": 11, "Ignacio": 15, "Pablo Blanco": 13, "Rubén": 12, "Elena": 5, "Juanjo": 23, "Ismael": 22, "Carlos": 3, "Carmen": 1, "Sabina": 17, "Manu": 9, "Alejandra": 25};
 const PROGRAMA = [
  ["🚪","Llegada","Control de disfraces en la puerta, chupito de bienvenida y brindis del Padrino."],
  ["🍽️","Tarde y cena","Normas del pueblo: quien las incumpla, bebe."],
@@ -295,7 +299,7 @@ async function rpc(fn, args){
 
 /* Modo prueba: simula el servidor en este navegador. ?ahora en la URL desbloquea las misiones. */
 function mock(fn,a){
-  const base={Mario:1,Marco:2,Monti:3,Alba:4,Vero:5,Alicia:6,Sandra:7,Ignacio:8,"Pablo Blanco":9,"Rubén":10,Elena:11,Juanjo:12,Ismael:13,Carlos:16,Carmen:15,Sabina:17,Manu:14};
+  const base={Mario:1,Marco:2,Monti:3,Alba:4,Vero:5,Alicia:6,Sandra:7,Ignacio:8,"Pablo Blanco":9,"Rubén":10,Elena:11,Juanjo:12,Ismael:13,Carlos:16,Carmen:15,Sabina:17,Manu:14,Alejandra:18};
   const db = LS.get("mock.db2",null) || {roster:base,players:{},missions:null};
   const start = new URL(location.href).searchParams.has("ahora") ? new Date(Date.now()-1000) : new Date("2026-11-07T17:00:00+01:00");
   const save=()=>LS.set("mock.db2",db), rnd=n=>1+Math.floor(Math.random()*n);
@@ -346,8 +350,9 @@ const STORY = [
  ["IV","Ojos cerrados","Desde entonces, a las tres de la mañana, una figura cruza la plaza con los ojos cerrados y los brazos por delante. No tropieza. No se para. Nadie se ha atrevido a despertarla, y dicen que es mejor así. Y al amanecer, unos pasos rápidos, siempre los mismos y siempre al mismo ritmo, dan vueltas y vueltas al pueblo, como si alguien huyera de algo… o fuera a por ello."],
  ["V","Polvo y tambores","Del lado del cerro llegó un olor a pólvora y un tintineo metálico, de espuelas. Dos sombras con el ala bien calada esperaron al alba junto a la fuente, como si alguien les debiera algo. Y desde algún sitio muy lejano empezó a sonar un ritmo tropical, de tambores, que nadie supo de dónde salía y que hizo bailar hasta a las campanas."],
  ["VI","La gente de bien","Hubo quien quiso poner orden. Un vecino amabilísimo, de sonrisa perpetua, que saluda a todo el mundo tres veces y se santigua cada vez que alguien suelta una palabrota. En el hogar del jubilado, tres bastones golpean el suelo a la vez: «En mis tiempos esto no pasaba». Y en una cocina, una olla lleva tres días hirviendo. Una cuchara de madera remueve sin parar. «A esto le falta sal», dice una voz. Nadie ha preguntado qué hay dentro."],
- ["VII","El hombre que nunca grita","Por encima de todos, un hombre que nunca levanta la voz. Fuma en pipa, lleva una rosa roja en la solapa y hace tratos que nadie se atreve a rechazar. Dicen que fue él quien escribió diecisiete nombres en un papel. Que lo dobló dos veces. Y que lo echó al fuego."],
- ["Epílogo","Diecisiete sombras","El sábado 7 de noviembre, a las 21:30, las diecisiete sombras se sentarán a la misma mesa. Habrá cena, hoguera y música hasta muy tarde. Y habrá muertos. Tu nombre ya está en esa lista. Alguien lo sabe. Lo que tú no sabes… es quién."],
+ ["VII","Huellas en el tejado","Hay quien jura haber oído pasos sobre las tejas a medianoche. Pasos pequeños, ligeros… y el taconeo de unas botas. Al día siguiente, en el alféizar de la iglesia, apareció una pluma larga, de sombrero, y nadie sabe de qué pájaro es. La panadera cuenta que alguien le hizo una reverencia perfecta antes de llevarse una sardina. Y que tenía los ojos más tiernos que ha visto nunca."],
+ ["VIII","El hombre que nunca grita","Por encima de todos, un hombre que nunca levanta la voz. Fuma en pipa, lleva una rosa roja en la solapa y hace tratos que nadie se atreve a rechazar. Dicen que fue él quien escribió dieciocho nombres en un papel. Que lo dobló dos veces. Y que lo echó al fuego."],
+ ["Epílogo","Dieciocho sombras","El sábado 7 de noviembre, a las 21:30, las dieciocho sombras se sentarán a la misma mesa. Habrá cena, hoguera y música hasta muy tarde. Y habrá muertos. Tu nombre ya está en esa lista. Alguien lo sabe. Lo que tú no sabes… es quién."],
 ];
 function storyHTML(){
   return `<div class="stack story">${STORY.map(([n,t,x],i)=>`<div class="glass pad chap" style="animation-delay:${0.15+i*0.35}s">

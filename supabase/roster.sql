@@ -22,5 +22,6 @@ insert into public.matanza_roster (name, character_id) values
   ('Carlos', 16),
   ('Carmen', 15),
   ('Sabina', 17),
+  ('Alejandra', 18),
   ('Manu', 14)
 on conflict (name) do update set character_id = excluded.character_id;
